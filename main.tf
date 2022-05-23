@@ -1,20 +1,20 @@
 resource "google_storage_bucket" "default" {
-  name          = "hillel_18_podmogylnyi"
-  location      = "US"
+  name          = var.bucket_name
+  location      = var.bucket_location
   force_destroy = true
 
   uniform_bucket_level_access = true
 }
 
 resource "google_compute_instance" "default" {
-  name         = "compute-instance"
-  machine_type = "f1-micro"
+  name         = var.compute_name
+  machine_type = var.compute_type
 
 #  tags = ["foo", "bar"]
 
   boot_disk {
     initialize_params {
-      image = "debian-9-stretch-v20220519"
+      image = var.compute_image
     }
   }
 
